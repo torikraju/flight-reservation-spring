@@ -1,7 +1,7 @@
 package com.flightreservation.entity;
 
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -11,10 +11,7 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "FLIGHT")
-public class Flight {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Flight extends AbstractEntity {
 
     @Column(name = "FLIGHT_NUMBER")
     private String flightNumber;
@@ -33,4 +30,8 @@ public class Flight {
 
     @Column(name = "ESTIMATED_DEPARTURE_TIME")
     private Timestamp estimatedDepartureTime;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "flight")
+    @JsonIgnore
+    private Reservation reservation;
 }

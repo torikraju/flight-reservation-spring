@@ -1,16 +1,15 @@
 package com.flightreservation.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Data
 @Entity
 @Table(name = "USER")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class User extends AbstractEntity {
 
     @Column(name = "FIRST_NAME")
     private String firstName;
@@ -23,4 +22,5 @@ public class User {
 
     @Column(name = "PASSWORD")
     private String password;
+
 }
